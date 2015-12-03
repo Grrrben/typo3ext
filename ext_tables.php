@@ -33,6 +33,8 @@ if (TYPO3_MODE === 'BE') {
 }
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Name');
-
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_key_domain_model_plz', 'EXT:key/Resources/Private/Language/locallang_csh_tx_key_domain_model_plz.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_key_domain_model_plz');
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin($_EXTKEY, 'Frontend', 'beschikbaarheidscheck');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:hello/Configuration/TypoScript/conf.ts">');

@@ -14,5 +14,7 @@ if (!defined('TYPO3_MODE')) {
 	array(
 		'Plz' => 'create, update, delete',
 		
-	)
+	),
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+
 );
