@@ -5,19 +5,30 @@ This Template is responsible for creating a table of domain objects.
 
 If you modify this template, do not forget to change the overwrite settings
 in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
+Resources:
+Private:
+Templates:
+List.html: keep
 
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
-<f:section name="content">
-<h1>Listing for Plz</h1>
+<f:section name="main">
+    <h1>Index</h1>
 
-<f:flashMessages />
+    <f:flashMessages renderMode="div" />
 
-        <v:condition.variable.isset name="{plzs}">
+    <p>index met zoekoptie</p>
+
+    <form name="vendor_key" method="post">
+
+        <input type="text" name="plz" id="vendor_key_plz"  placeholder="Postleitzahl">
+        <input type="text" name="strasse" id="vendor_key_strasse"  placeholder="Straße">
+        <input type="text" name="hausnr" id="vendor_key_hausnr"  placeholder="HsNr">
+
+        <input type="submit" value="check">
+
+    </form>
+
     <table  class="tx_key" >
         <tr>
             <th><f:translate key="tx_key_domain_model_plz.plz" /></th>
@@ -41,9 +52,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
             </tr>
         </f:for>
     </table>
-        </v:condition.variable.isset>
 
 
-<f:link.action action="new">New Plz</f:link.action>
 
+    <f:link.action action="new">Nieuw record</f:link.action>
+    <f:link.action action="list">List records</f:link.action>
 </f:section>

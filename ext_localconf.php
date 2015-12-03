@@ -5,14 +5,14 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 	'Vendor.' . $_EXTKEY,
-	'Frontend',
+	'Plugin',
 	array(
-		'Plz' => 'list, show, new, create, edit, update, delete',
+		'Plugin' => 'show',
 		
 	),
 	// non-cacheable actions
 	array(
-		'Plz' => 'create, update, delete',
+        'Plugin' => 'show',
 		
 	),
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT

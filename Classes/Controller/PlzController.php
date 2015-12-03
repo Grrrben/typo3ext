@@ -26,6 +26,8 @@ namespace Vendor\Key\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+    use \TYPO3\CMS\Core\Utility\GeneralUtility as Utility;
+
 /**
  * PlzController
  */
@@ -38,6 +40,22 @@ class PlzController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 	 * @inject
 	 */
 	protected $plzRepository = NULL;
+
+
+
+    public function indexAction () {
+
+        if ($_POST) {
+
+            $plz = Utility::_GP("plz");
+            $plzs = $this->plzRepository->where($plz);
+            // var_dump(count($plzs));
+            // var_dump(\TYPO3\CMS\Core\Utility\DebugUtility::debug($_REQUEST));
+            $this->view->assign('plzs', $plzs);
+        }
+
+
+    }
 
 	/**
 	 * action list

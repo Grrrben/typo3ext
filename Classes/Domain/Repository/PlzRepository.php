@@ -31,5 +31,28 @@ namespace Vendor\Key\Domain\Repository;
  */
 class PlzRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
+    // Example for repository wide settings
+    public function initializeObject() {
+        /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
+        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings->setRespectStoragePage(FALSE);
+        $this->setDefaultQuerySettings($querySettings);
+    }
+
+    public function where ($plz) {
+
+        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings->setRespectStoragePage(FALSE);
+        $this->setDefaultQuerySettings($querySettings);
+
+        $query = $this->createQuery();
+        $query->matching($query->equals('plz', $plz));
+
+        /** @var Typo3DbQueryParser $queryParser */
+        $queryParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Storage\\Typo3DbQueryParser');
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($queryParser->parseQuery($query));
+
+        return $query->execute();
+    }
 	
 }
